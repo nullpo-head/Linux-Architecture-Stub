@@ -71,10 +71,3 @@ const struct seq_operations cpuinfo_op = {
 	.stop	= c_stop,
 	.show	= show_cpuinfo,
 };
-
-static int __init topology_init(void)
-{
-	return 0;
-}
-
-subsys_initcall(topology_init);
