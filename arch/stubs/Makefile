@@ -6,7 +6,7 @@
 # for more details.
 #
 
-KBUILD_DEFCONFIG := spct6600_defconfig
+KBUILD_DEFCONFIG := 
 CROSS_COMPILE :=
 
 #
@@ -26,11 +26,11 @@ KBUILD_CFLAGS_MODULE +=
 LDFLAGS += -m elf_i386
 LDFLAGS_vmlinux	+= -static -nostdlib
 
-head-y := arch/aqua/kernel/head.o
-libs-y += arch/aqua/lib/
-core-y += arch/aqua/kernel/ arch/aqua/mm/
+head-y := arch/stubs/kernel/head.o
+# libs-y += arch/stubs/lib/  # Set libs-y for architecture dependent libraries
+core-y += arch/stubs/kernel/ arch/stubs/mm/
 
-boot := arch/aqua/boot
+boot := arch/stubs/boot
 
 vmlinux.bin: vmlinux
 	$(Q)$(MAKE) $(build)=$(boot) $(boot)/$@

@@ -35,12 +35,6 @@
 #include <asm/setup.h>
 
 struct screen_info screen_info;
-unsigned long kernelsp;
-
-static char command_line[COMMAND_LINE_SIZE];
-static struct resource code_resource = { .name = "Kernel code",};
-static struct resource data_resource = { .name = "Kernel data",};
-
 
 void __init setup_arch(char **cmdline_p)
 {

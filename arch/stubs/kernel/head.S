@@ -27,10 +27,6 @@
 
 #include <asm/asm-offsets.h>
 
-	.extern start_kernel
-	.global init_thread_union
-	.global	kernelsp
-
 __INIT
-ENTRY(_stext)
+ENTRY(_start)
 	nop

@@ -5,13 +5,6 @@
 #include <asm/uaccess.h>
 #include <asm-generic/module.h>
 
-struct mod_arch_specific {
-	/* Data Bus Error exception tables */
-	struct list_head dbe_list;
-	const struct exception_table_entry *dbe_start;
-	const struct exception_table_entry *dbe_end;
-};
-
 typedef uint8_t Elf64_Byte;		/* Type for a 8-bit quantity. */
 
 /* Given an address, look for it in the exception tables. */

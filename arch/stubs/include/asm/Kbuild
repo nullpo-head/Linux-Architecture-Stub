@@ -18,3 +18,4 @@ generic-y += checksum.h
 generic-y += ftrace.h
 generic-y += futex.h
 generic-y += hardirq.h
+generic-y += word-at-a-time.h
