@@ -101,11 +101,3 @@ arch_ptrace(struct task_struct *child, long request,
 	    unsigned long addr, unsigned long data)
 {
 }
-
-/*
- * Notification of system call entry/exit
- * - triggered by current->work.syscall_trace
- */
-asmlinkage void do_syscall_trace(struct pt_regs *regs, int entryexit)
-{
-}

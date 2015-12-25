@@ -34,15 +34,6 @@ void flush_tlb_all(void)
 {
 }
 
-/*
- * If mm is currently active_mm, we can't really drop it. Instead,
- * we will get a new one for it.
- */
-static inline void
-drop_mmu_context(struct mm_struct *mm)
-{
-}
-
 void flush_tlb_mm(struct mm_struct *mm)
 {
 }
@@ -57,18 +48,6 @@ void flush_tlb_page(struct vm_area_struct *vma, unsigned long page)
 {
 }
 
-/*
- * This one is only used for pages with the global bit set so we don't care
- * much about the ASID.
- */
-void flush_tlb_one(unsigned long page)
-{
-}
-
 void __update_tlb(struct vm_area_struct *vma, unsigned long address, pte_t pte)
-{
-}
-
-void tlb_init(void)
 {
 }

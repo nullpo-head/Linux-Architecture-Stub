@@ -41,9 +41,6 @@ void machine_halt(void) {}
 /* If or when software machine-power-off is implemented, add code here. */
 void machine_power_off(void) {}
 
-void ret_from_fork(void);
-void ret_from_kernel_thread(void);
-
 void start_thread(struct pt_regs *regs, unsigned long pc, unsigned long sp)
 {
 }
@@ -63,6 +60,7 @@ void flush_thread(void) {}
 int copy_thread(unsigned long clone_flags, unsigned long usp,
 		unsigned long arg, struct task_struct *p)
 {
+	return 1;
 }
 
 /* Fill in the fpu structure for a core dump. */

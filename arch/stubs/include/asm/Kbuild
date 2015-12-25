@@ -3,7 +3,9 @@ header-y +=
 
 
 generic-y += barrier.h
+generic-y += bugs.h
 generic-y += clkdev.h
+generic-y += cmpxchg.h
 generic-y += cputime.h
 generic-y += irq_work.h
 generic-y += mcs_spinlock.h

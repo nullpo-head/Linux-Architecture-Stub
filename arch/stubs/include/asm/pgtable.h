@@ -8,9 +8,6 @@
 #include <asm/setup.h>
 #include <asm/pgtable-bits.h>
 
-extern void load_pgd(unsigned long pg_dir);
-extern pte_t invalid_pte_table[PAGE_SIZE/sizeof(pte_t)];
-
 /* PGDIR_SHIFT determines what a third-level page table entry can map */
 #define PGDIR_SHIFT	22
 #define PGDIR_SIZE	(_AC(1, UL) << PGDIR_SHIFT)
@@ -47,19 +44,18 @@ extern pte_t invalid_pte_table[PAGE_SIZE/sizeof(pte_t)];
  */
 static inline int pmd_none(pmd_t pmd)
 {
-	return pmd_val(pmd) == (unsigned long) invalid_pte_table;
+	return -1;
 }
 
 #define pmd_bad(pmd)		(pmd_val(pmd) & ~PAGE_MASK)
 
 static inline int pmd_present(pmd_t pmd)
 {
-	return pmd_val(pmd) != (unsigned long) invalid_pte_table;
+	return -1;
 }
 
 static inline void pmd_clear(pmd_t *pmdp)
 {
-	pmd_val(*pmdp) = ((unsigned long) invalid_pte_table);
 }
 
 #define pte_page(x)		pfn_to_page(pte_pfn(x))
@@ -237,9 +233,7 @@ static inline pte_t pte_mkyoung(pte_t pte)
 	 do { *(pmdptr) = (pmdval); } while (0)
 #define pte_present(pte)	(pte_val(pte) & _PAGE_PRESENT)
 
-extern unsigned long pgd_current;
 extern pgd_t swapper_pg_dir[PTRS_PER_PGD];
-extern void paging_init(void);
 
 static inline pte_t pte_modify(pte_t pte, pgprot_t newprot)
 {

@@ -38,39 +38,16 @@
 #include <asm/sections.h>
 #include <asm/tlb.h>
 
+#define __page_aligned(order) __attribute__((__aligned__(PAGE_SIZE<<order)))
+pgd_t swapper_pg_dir[PTRS_PER_PGD] __page_aligned(PTE_ORDER);
+
 unsigned long empty_zero_page;
 EXPORT_SYMBOL_GPL(empty_zero_page);
-
-int page_is_ram(unsigned long pagenr)
-{
-	return 0;
-}
 
 void __init mem_init(void)
 {
 }
 
-#ifdef CONFIG_BLK_DEV_INITRD
-void free_initrd_mem(unsigned long start, unsigned long end)
-{
-	free_reserved_area((void *)start, (void *)end, POISON_FREE_INITMEM,
-			   "initrd");
-}
-#endif
-
 void __init_refok free_initmem(void)
 {
-	free_initmem_default(POISON_FREE_INITMEM);
 }
-
-unsigned long pgd_current;
-
-#define __page_aligned(order) __attribute__((__aligned__(PAGE_SIZE<<order)))
-
-/*
- * gcc 3.3 and older have trouble determining that PTRS_PER_PGD and PGD_ORDER
- * are constants.  So we use the variants from asm-offset.h until that gcc
- * will officially be retired.
- */
-pgd_t swapper_pg_dir[PTRS_PER_PGD] __page_aligned(PTE_ORDER);
-pte_t invalid_pte_table[PTRS_PER_PTE] __page_aligned(PTE_ORDER);
